@@ -1,4 +1,5 @@
 # Subsonic Wind Tunnel
+This repository contains the MATLAB and C++ scripts I wrote to optimize the geometry, record sensor telemetry, and analyze the experimental data for my wind tunnel.
 
 ## Files and Relevant Output
 
