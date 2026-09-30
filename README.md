@@ -42,3 +42,10 @@ Reads the downloaded serial output from the Arduino Uno R3, and plots the airspe
 
 ### 3. `arduinoSoftware.cpp`
 Outputs airspeed telemetry from the MPXV7002DP sensor for the Arduino Uno R3.
+
+
+
+## Hardware Reference
+*The physical subsonic wind tunnel with the telemetry electronics disconnected.*
+
+![Physical Wind Tunnel](WindTunnelMainHardwareImage.png)
