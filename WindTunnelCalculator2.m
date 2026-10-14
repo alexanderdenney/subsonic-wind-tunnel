@@ -198,8 +198,9 @@ if doPlot
     
     plot(xq, yq, '--', 'LineWidth',1, 'Color', '#ef8a62');
     
+    Re_intersectRounded = round(Re_intersect, 3, 'significant');
     plot(Q_intersect, P_intersect, 'k.', 'MarkerSize', 25, 'DisplayName', 'Operating Point');
-    label_str = sprintf('  Re = %.0f\n  v_{test} = %.2f m/s', Re_intersect, V_intersect);
+    label_str = sprintf('  Re = %.0f\n  v_{test} = %.2f m/s', Re_intersectRounded, V_intersect);
     text(Q_intersect, P_intersect, label_str, ...
         'VerticalAlignment', 'bottom', ...
         'HorizontalAlignment', 'left', ...
@@ -217,7 +218,8 @@ if doPlot
     
     grid on;
     title('System Resistance and Achievable Reynolds Number');
-    subtitle(sprintf('C_r = %.2f    D_{intake} = %.2f m   D_{test} = %.2f m   Area_{fan} = %.2f m^2    L_{test volume} = %.2f m', C_r, D_intake, D_testvolume, A_fan, L_testvolume));
+    D_intakeRounded = round(D_intake / 0.005) * 0.005; % rounded for easier fabrication
+    subtitle(sprintf('C_r = %.1f    D_{intake} = %.3f m   D_{test} = %.3f m   Area_{fan} = %.3f m^2    L_{test volume} = %.3f m', C_r, D_intakeRounded, D_testvolume, A_fan, L_testvolume));
 
     xlabel('Volumetric Flow Rate (m^3/h)');
     fanLabel = append(fanData.fanName, ' Fan Pressure Drop');

@@ -34,12 +34,14 @@ timeStamp = (0:numel(pressure)-1) * SECONDS_BETWEEN_EACH_SERIAL_PRINT;
 %% Statistics
 validIdx = (timeStamp >= START_MEAN) & (timeStamp <= END_MEAN);
 meanPressureInRange = mean(pressure(validIdx));
+stdPressureInRange = std(pressure(validIdx));
 meanVelocityInRange = mean(velocity(validIdx));
+stdVelocityInRange = std(velocity(validIdx));
 
 percentError_v = abs((meanVelocityInRange - THEORETICAL_TEST_VELOCITY) / THEORETICAL_TEST_VELOCITY) * 100;
 
-fprintf('Mean Velocity: %.2f m/s\n', meanVelocityInRange);
-fprintf('Mean Pressure: %.2f Pa\n', meanPressureInRange);
+fprintf('Mean Velocity: %.2f m/s | Std Velocity: m/s %.2f\n', meanVelocityInRange, stdVelocityInRange);
+fprintf('Mean Pressure: %.2f Pa | Std Pressure: Pa %.2f\n', meanPressureInRange, stdPressureInRange);
 fprintf('Theoretical Velocity: %.2f m/s\n', THEORETICAL_TEST_VELOCITY);
 fprintf('Velocity Percent Error: %.2f%%\n', percentError_v);
 
@@ -48,7 +50,7 @@ fprintf('Velocity Percent Error: %.2f%%\n', percentError_v);
 figure('Name', 'Pressure and Velocity vs Time')
 title('Pressure and Velocity vs Time')
 
-subtitle(sprintf('v_{mean} = %.2f m/s, p_{mean} = %.2f Pa, t_{sample} = [%.2f, %.2f] s\nv_{theoretical} = %.2f m/s, Error_v = %.2f%%', meanVelocityInRange, meanPressureInRange, START_MEAN, END_MEAN, THEORETICAL_TEST_VELOCITY, percentError_v));
+subtitle(sprintf('v_{mean} = (%.2f ± %.2f) m/s, p_{mean} = (%.1f ± %.1f) Pa, t_{sample} = [%.1f, %.1f] s\nv_{theoretical} = %.2f m/s, Error_v = %.1f%% (Uncertainties: ±1\\sigma)', meanVelocityInRange, stdVelocityInRange, meanPressureInRange, stdPressureInRange, START_MEAN, END_MEAN, THEORETICAL_TEST_VELOCITY, percentError_v));
 
 hold on
 grid on
